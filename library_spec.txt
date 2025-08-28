@@ -24,7 +24,3 @@ PRECONDITION: (t in T AND T[t] in U) AND ((ADMIN in T[t] AND studentId in U) OR 
 getStudent(t : string, studentId : string) ==> (OK, studentData)
 POSTCONDITION: studentId = studentData
 
-GETBOOK_OK:
-PRECONDITION: (t -> u in T and u in U)
-getBook(t : Token, bookCode : string) ==> (OK, bookData: Book)
-POSTCONDITION: bookCode = bookData.code

@@ -1,0 +1,5 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/apple/Desktop/Specification-Based-Testing-of-RESTful-APIs-master-3 OG 2'
+g++ -std=c++17 test_libapplication.cpp jsCodeGenerator/jsCodegen.cpp -o test_libapplication
+make: Leaving directory `/Users/apple/Desktop/Specification-Based-Testing-of-RESTful-APIs-master-3 OG 2'
+ 

@@ -76,15 +76,15 @@ class Entry
         // lightexample1::example(apis, symtable);
         // lightexample2::example(apis, symtable);
         // lightexample3::example(apis, symtable);
-        // heavyexample1::example(apis, symtable);
+         //heavyexample1::example(apis, symtable);
         // heavyexample2::example(apis,symtable);
         // heavyexample3::example(apis,symtable);
-        // heavyexample4::example(apis,symtable);
+        heavyexample4::example(apis,symtable);
         // heavyexample6::example(apis,symtable);
         // heavyexample7::example(apis,symtable);
         // heavyexample10::example(apis,symtable);
         // heavyexample11::example(apis,symtable);
-        heavyexample5::example(apis,symtable);
+        //heavyexample5::example(apis,symtable);
         // heavyexample5::example(apis,symtable);
         auto spec = make_unique<Spec>(move(globals), move(inits), move(funcDecls), move(apis));
         return make_pair(std::move(spec), std::move(symtable));

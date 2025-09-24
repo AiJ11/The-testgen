@@ -13,8 +13,6 @@
 
 #include "../ast.hpp"
 
-// Removed: #include "../library_apispec_examples/Entry.hpp"
-
 // Forward declarations
 
 class Spec;

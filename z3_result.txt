@@ -1,0 +1,59 @@
+(error "line 27 column 57: unknown constant mapAcess (String String) ")
+(error "line 28 column 33: unknown constant set_union (String String) ")
+sat
+(
+  (define-fun v1 () String
+    "B")
+  (define-fun v2 () String
+    "A")
+  (define-fun v6 () String
+    "")
+  (define-fun Val_U () (Array String String)
+    ((as const (Array String String)) ""))
+  (define-fun Val_T () (Array String String)
+    ((as const (Array String String)) ""))
+  (define-fun Dom_S () (Array String Bool)
+    ((as const (Array String Bool)) false))
+  (define-fun Val_S () (Array String String)
+    ((as const (Array String String)) ""))
+  (define-fun v7 () String
+    "")
+  (define-fun v4 () String
+    "")
+  (define-fun Dom_T () (Array String Bool)
+    ((as const (Array String Bool)) false))
+  (define-fun Dom_U () (Array String Bool)
+    ((as const (Array String Bool)) false))
+  (define-fun v3 () String
+    "")
+  (define-fun v5 () String
+    "")
+)
+(
+  (define-fun v1 () String
+    "B")
+  (define-fun v2 () String
+    "A")
+  (define-fun v6 () String
+    "")
+  (define-fun Val_U () (Array String String)
+    ((as const (Array String String)) ""))
+  (define-fun Val_T () (Array String String)
+    ((as const (Array String String)) ""))
+  (define-fun Dom_S () (Array String Bool)
+    ((as const (Array String Bool)) false))
+  (define-fun Val_S () (Array String String)
+    ((as const (Array String String)) ""))
+  (define-fun v7 () String
+    "")
+  (define-fun v4 () String
+    "")
+  (define-fun Dom_T () (Array String Bool)
+    ((as const (Array String Bool)) false))
+  (define-fun Dom_U () (Array String Bool)
+    ((as const (Array String Bool)) false))
+  (define-fun v3 () String
+    "")
+  (define-fun v5 () String
+    "")
+)

@@ -7,7 +7,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 
 # This program built for i386-apple-darwin11.3.0
 
-# Make data base, printed on Thu Aug 28 18:28:45 2025
+# Make data base, printed on Wed Sep 24 14:10:40 2025
 
 # Variables
 
@@ -21,10 +21,6 @@ OPAM_SWITCH_PREFIX = /Users/apple/.opam/5.1.0
 OCAML_TOPLEVEL_PATH = /Users/apple/.opam/5.1.0/lib/toplevel
 # environment
 VSCODE_CRASH_REPORTER_PROCESS_TYPE = extensionHost
-# makefile (from `makefile', line 6)
-SRC = test_libapplication.cpp jsCodeGenerator/jsCodegen.cpp
-# makefile (from `makefile', line 9)
-TARGET = test_libapplication
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # automatic
@@ -32,7 +28,7 @@ TARGET = test_libapplication
 # automatic
 @F = $(notdir $@)
 # makefile
-CURDIR := /Users/apple/Desktop/Specification-Based-Testing-of-RESTful-APIs-master-3 OG 2
+CURDIR := /Users/apple/Desktop/Specification-Based-Testing-of-RESTful-APIs-master-3 OG 3
 # makefile
 SHELL = /bin/sh
 # environment
@@ -41,24 +37,26 @@ VSCODE_NLS_CONFIG = {"userLocale":"en-gb","osLocale":"en-in","resolvedLanguage":
 _ = /usr/bin/make
 # makefile (from `makefile', line 1)
 MAKEFILE_LIST :=  makefile
-# makefile (from `makefile', line 3)
-CXXFLAGS = -std=c++17
+# makefile (from `makefile', line 4)
+CXXFLAGS = -std=c++17 -Wall -Wextra -I. -g -O2
 # environment
 __CFBundleIdentifier = com.microsoft.VSCode
 # environment
 VSCODE_CWD = /
 # environment
 PATH = /Users/apple/.opam/5.1.0/bin:/usr/local/opt/bison/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Library/TeX/texbin:/Users/apple/Library/Application Support/org.dfinity.dfx/bin:/Users/apple/.cargo/bin
+# makefile (from `makefile', line 8)
+SYMBOLIC_SOURCES = SymbolicEngine/TestGenSymbolicEnv.cpp SymbolicEngine/TestGenSymbolicVisitor.cpp SymbolicEngine/TestGenDriver.cpp
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.uVV9PtdWz6/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.QukbJpOzIk/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
-PWD = /Users/apple/Desktop/Specification-Based-Testing-of-RESTful-APIs-master-3 OG 2
+PWD = /Users/apple/Desktop/Specification-Based-Testing-of-RESTful-APIs-master-3 OG 3
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 # environment
@@ -68,7 +66,7 @@ HOME = /Users/apple
 # default
 MAKEFILEPATH = $(shell /usr/bin/xcode-select -print-path 2>/dev/null || echo /Developer)/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/apple/Library/Application Support/Code/CachedData/6f17636121051a53c88d3e605c491d22af2ba755
+VSCODE_CODE_CACHE_PATH = /Users/apple/Library/Application Support/Code/CachedData/f220831ea2d946c0dcb0f3eaa480eb435a2c1260
 # environment
 LOGNAME = apple
 # environment
@@ -98,7 +96,7 @@ USER = apple
 # environment
 CAML_LD_LIBRARY_PATH = /Users/apple/.opam/5.1.0/lib/stublibs:/Users/apple/.opam/5.1.0/lib/ocaml/stublibs:/Users/apple/.opam/5.1.0/lib/ocaml
 # makefile
-.DEFAULT_GOAL := all
+.DEFAULT_GOAL := basic
 # environment
 APPLICATION_INSIGHTS_NO_STATSBEAT = true
 # automatic
@@ -122,13 +120,15 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.34679693.34679700
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.35258537.35258543
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # environment
 VSCODE_L10N_BUNDLE_LOCATION = 
 # automatic
 +F = $(notdir $+)
+# makefile (from `makefile', line 6)
+CORE_SOURCES = test_libapplication.cpp jsCodeGenerator/jsCodeGen.cpp
 # environment
 __CF_USER_TEXT_ENCODING = 0x1F5:0x0:0x0
 # environment
@@ -152,9 +152,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 767
+VSCODE_PID = 856
 # variable set hash-table stats:
-# Load=71/1024=7%, Rehash=0, Collisions=1/99=1%
+# Load=71/1024=7%, Rehash=0, Collisions=1/98=1%
 
 # Pattern-specific Variable Values
 
@@ -162,9 +162,9 @@ VSCODE_PID = 767
 
 # Directories
 
-# . (device 16777223, inode 34679281): 53 files, no impossibilities.
+# . (device 16777223, inode 34939376): 64 files, no impossibilities.
 
-# 53 files, no impossibilities in 1 directories.
+# 64 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -172,23 +172,31 @@ VSCODE_PID = 767
 
 # Files
 
-all: test_libapplication
+# Not a target:
+SymbolicEngine/TestGenSymbolicVisitor.cpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+all:
 #  Command-line target.
 #  Implicit rule search has been done.
 #  File does not exist.
-#  File has been updated.
-#  Successfully updated.
+#  File has not been updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
+.PHONY: basic symbolic clean help
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
 # Not a target:
 test_libapplication.cpp:
-#  Implicit rule search has been done.
-#  Last modified 2025-08-24 20:37:00
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 .SUFFIXES:
@@ -199,20 +207,53 @@ test_libapplication.cpp:
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
-#  Last modified 2025-07-22 21:58:11
+#  Last modified 2025-09-07 17:46:58
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
+basic: testgen_basic
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
 # Not a target:
-jsCodeGenerator/jsCodegen.cpp:
-#  Implicit rule search has been done.
-#  Last modified 2025-04-29 12:02:58
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+SymbolicEngine/TestGenSymbolicEnv.cpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+help:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `makefile', line 28):
+	@echo "make basic     - Build basic TestGen"
+	@echo "make symbolic  - Build TestGen + SymbolicEngine"
+	
+
+# Not a target:
+SymbolicEngine/TestGenDriver.cpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+testgen_symbolic: test_libapplication.cpp jsCodeGenerator/jsCodeGen.cpp SymbolicEngine/TestGenSymbolicEnv.cpp SymbolicEngine/TestGenSymbolicVisitor.cpp SymbolicEngine/TestGenDriver.cpp
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `makefile', line 20):
+	$(CXX) $(CXXFLAGS) -ISymbolicEngine -DUSE_SYMBOLIC_ENGINE $^ -o $@
+	
+
+# Not a target:
+jsCodeGenerator/jsCodeGen.cpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 .DEFAULT:
@@ -220,35 +261,31 @@ jsCodeGenerator/jsCodegen.cpp:
 #  Modification time never checked.
 #  File has not been updated.
 
-test_libapplication: test_libapplication.cpp jsCodeGenerator/jsCodegen.cpp
-#  Implicit rule search has not been done.
-#  Last modified 2025-08-27 16:15:16
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `makefile', line 16):
-	$(CXX) $(CXXFLAGS) $(SRC) -o $(TARGET)
-	
-
-run: test_libapplication
+testgen_basic: test_libapplication.cpp jsCodeGenerator/jsCodeGen.cpp
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `makefile', line 20):
-	./$(TARGET)
+#  commands to execute (from `makefile', line 14):
+	$(CXX) $(CXXFLAGS) $^ -o $@
 	
 
 clean:
+#  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
-#  Modification time never checked.
+#  File does not exist.
 #  File has not been updated.
 #  commands to execute (from `makefile', line 24):
-	rm -f $(TARGET)
+	rm -f testgen_basic testgen_symbolic .o jsCodeGenerator/.o SymbolicEngine/*.o
 	
 
+symbolic: testgen_symbolic
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
 # files hash-table stats:
-# Load=9/1024=1%, Rehash=0, Collisions=0/26=0%
+# Load=16/1024=2%, Rehash=0, Collisions=0/41=0%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -260,6 +297,8 @@ clean:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Thu Aug 28 18:28:45 2025
+# Finished Make data base on Wed Sep 24 14:10:40 2025
 
  
+make: *** No rule to make target `all'.  Stop.
+

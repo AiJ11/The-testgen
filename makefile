@@ -1,24 +1,33 @@
-# Compiler and flags
+
 CXX = g++
-CXXFLAGS = -std=c++17
 
-# Source files
-SRC = test_libapplication.cpp jsCodeGenerator/jsCodegen.cpp
+CXXFLAGS = -std=c++17 -Wall -Wextra -I. -g -O2
 
-# Output binary
-TARGET = test_libapplication
+CORE_SOURCES = test_libapplication.cpp jsCodeGenerator/jsCodeGen.cpp
 
-# Default target
-all: $(TARGET)
+SYMBOLIC_SOURCES = SymbolicEngine/TestGenSymbolicEnv.cpp SymbolicEngine/TestGenSymbolicVisitor.cpp SymbolicEngine/TestGenDriver.cpp
 
-# Build target
-$(TARGET): $(SRC)
-	$(CXX) $(CXXFLAGS) $(SRC) -o $(TARGET)
+basic: testgen_basic
 
-# Run target
-run: $(TARGET)
-	./$(TARGET)
+testgen_basic: $(CORE_SOURCES)
 
-# Clean target
+	$(CXX) $(CXXFLAGS) $^ -o $@
+
+symbolic: testgen_symbolic
+
+testgen_symbolic: $(CORE_SOURCES) $(SYMBOLIC_SOURCES)
+
+	$(CXX) $(CXXFLAGS) -ISymbolicEngine -DUSE_SYMBOLIC_ENGINE $^ -o $@
+
 clean:
-	rm -f $(TARGET)
+
+	rm -f testgen_basic testgen_symbolic .o jsCodeGenerator/.o SymbolicEngine/*.o
+
+help:
+
+	@echo "make basic     - Build basic TestGen"
+
+	@echo "make symbolic  - Build TestGen + SymbolicEngine"
+
+.PHONY: basic symbolic clean help
+

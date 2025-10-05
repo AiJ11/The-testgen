@@ -7,7 +7,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 
 # This program built for i386-apple-darwin11.3.0
 
-# Make data base, printed on Wed Sep 24 14:10:40 2025
+# Make data base, printed on Sun Oct  5 20:59:38 2025
 
 # Variables
 
@@ -52,7 +52,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.QukbJpOzIk/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.LQWNzia3z4/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -66,7 +66,7 @@ HOME = /Users/apple
 # default
 MAKEFILEPATH = $(shell /usr/bin/xcode-select -print-path 2>/dev/null || echo /Developer)/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/apple/Library/Application Support/Code/CachedData/f220831ea2d946c0dcb0f3eaa480eb435a2c1260
+VSCODE_CODE_CACHE_PATH = /Users/apple/Library/Application Support/Code/CachedData/385651c938df8a906869babee516bffd0ddb9829
 # environment
 LOGNAME = apple
 # environment
@@ -120,7 +120,7 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.35258537.35258543
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.35894582.35894588
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # environment
@@ -152,7 +152,7 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 856
+VSCODE_PID = 2150
 # variable set hash-table stats:
 # Load=71/1024=7%, Rehash=0, Collisions=1/98=1%
 
@@ -162,9 +162,9 @@ VSCODE_PID = 856
 
 # Directories
 
-# . (device 16777223, inode 34939376): 64 files, no impossibilities.
+# . (device 16777225, inode 34939376): 63 files, no impossibilities.
 
-# 64 files, no impossibilities in 1 directories.
+# 63 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -297,7 +297,7 @@ symbolic: testgen_symbolic
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Wed Sep 24 14:10:40 2025
+# Finished Make data base on Sun Oct  5 20:59:38 2025
 
  
 make: *** No rule to make target `all'.  Stop.

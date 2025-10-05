@@ -55,6 +55,26 @@ void TestGenSymbolicVisitor::visit(const FuncCallStmt& n) {
             }
         }
     }
+
+    else if (funcName == "=" && n.call->args.size() == 2) {
+    if (auto* lhs = dynamic_cast<const Var*>(n.call->args[0].get())) {
+        if (auto* rhs = dynamic_cast<const Var*>(n.call->args[1].get())) {
+            const auto& L = env.declareMap(lhs->name);
+            const auto& R = env.declareMap(rhs->name);
+            std::string c = "(and (= " + L.domainArray + " " + R.domainArray + ")"
+                                 " (= " + L.valueArray  + " " + R.valueArray  + "))";
+            env.addConstraint(c);
+            if (debugMode) std::cout << "[TestGenSymbolic] Map assign: " << c << "\n";
+            return;
+        }
+    }
+    // Fallback to scalar equality
+    std::string c = "(= " + convertExprToSMT(*n.call->args[0]) + " " + convertExprToSMT(*n.call->args[1]) + ")";
+    env.addConstraint(c);
+    if (debugMode) std::cout << "[TestGenSymbolic] Scalar assign: " << c << "\n";
+    return;
+}
+
     else if (funcName != "assume" && funcName != "assert" && funcName != "input") {
         // This is an API call - we don't generate constraints for it but note it
         if (debugMode) {
@@ -143,27 +163,50 @@ std::string TestGenSymbolicVisitor::convertExprToSMT(const Expr& expr) {
         }
         
         // Equality
-        if (name == "equals" && funcCall->args.size() == 2) {
-            return "(= " + convertExprToSMT(*funcCall->args[0]) + " " + 
-                          convertExprToSMT(*funcCall->args[1]) + ")";
+if (name == "equals" && funcCall->args.size() == 2) {
+    // Pattern: equals( Var("S"), Union(Var("S_old"), idExpr) )
+    if (auto* leftVar = dynamic_cast<const Var*>(funcCall->args[0].get())) {
+        if (auto* unionCall = dynamic_cast<const FuncCall*>(funcCall->args[1].get())) {
+            if (unionCall->name == "Union" && unionCall->args.size() == 2) {
+                if (auto* baseMapVar = dynamic_cast<const Var*>(unionCall->args[0].get())) {
+                    const auto& S    = env.declareMap(leftVar->name);       // "S"
+                    const auto& Sold = env.declareMap(baseMapVar->name);    // "S_old"
+                    std::string idExpr = convertExprToSMT(*unionCall->args[1]);
+
+                    std::ostringstream r;
+                    // If Union means "add key to domain, keep values same"
+                    r << "(and (= " << S.domainArray << " (store " << Sold.domainArray << " " << idExpr << " true))"
+                      << " (= " << S.valueArray  << " " << Sold.valueArray  << "))";
+                    return r.str();
+                }
+            }
         }
+    }
+    // fallback: scalar equality
+    return "(= " + convertExprToSMT(*funcCall->args[0]) + " " + convertExprToSMT(*funcCall->args[1]) + ")";
+}
+
         
         // Map operations
         if (name == "inMapVerify" && funcCall->args.size() == 2) {
-            // inMapVerify(map, key) -> check if key is in map's domain
-            std::string mapExpr = convertExprToSMT(*funcCall->args[0]);
-            std::string keyExpr = convertExprToSMT(*funcCall->args[1]);
-            
-            // If first arg is a simple map variable, use its domain array
-            if (auto* mapVar = dynamic_cast<const Var*>(funcCall->args[0].get())) {
-                if (env.isMap(mapVar->name)) {
-                    const auto& mapInfo = env.getMapInfo(mapVar->name);
-                    return "(select " + mapInfo.domainArray + " " + keyExpr + ")";
-                }
-            }
-            
-            return "(select " + mapExpr + "_domain " + keyExpr + ")";
-        }
+    // Case 1: (map, key)
+    if (auto* mapVar = dynamic_cast<const Var*>(funcCall->args[0].get())) {
+        // Declare map by the *actual* name you see (T, U, S, S_old, ...)
+        const auto& mi = env.declareMap(mapVar->name);
+        std::string keyExpr = convertExprToSMT(*funcCall->args[1]);
+        return "(select " + mi.domainArray + " " + keyExpr + ")";
+    }
+    // Case 2: (key, map)
+    if (auto* mapVar = dynamic_cast<const Var*>(funcCall->args[1].get())) {
+        const auto& mi = env.declareMap(mapVar->name);
+        std::string keyExpr = convertExprToSMT(*funcCall->args[0]);
+        return "(select " + mi.domainArray + " " + keyExpr + ")";
+    }
+    // Fallback: don't invent "<expr>_domain"—return a benign tautology instead
+    if (debugMode) std::cout << "[TestGenSymbolic] WARN: inMapVerify on non-var map\n";
+    return "true";
+}
+
         
         if (name == "mapAccess" && funcCall->args.size() == 2) {
             // mapAcess(map, key) -> get value from map
@@ -224,10 +267,18 @@ std::string TestGenSymbolicVisitor::convertExprToSMT(const Expr& expr) {
                                   convertExprToSMT(*funcCall->args[1]) + ")";
         }
         
-        if (name == "Union" && funcCall->args.size() == 2) {
-            return "(set_union " + convertExprToSMT(*funcCall->args[0]) + " " + 
-                                  convertExprToSMT(*funcCall->args[1]) + ")";
-        }
+        //if (name == "Union" && funcCall->args.size() == 2) {
+           // return "(set_union " + convertExprToSMT(*funcCall->args[0]) + " " + 
+                            //      convertExprToSMT(*funcCall->args[1]) + ")";
+        //}
+        if (name == "Union") {
+    // Should be handled inside equals(S, Union(...)).
+    if (debugMode) std::cout << "[TestGenSymbolic] WARN: standalone Union encountered\n";
+    // Conservative fallback: just return the base map expression unchanged
+    // (keeps SMT valid; semantics come from the equals pattern above).
+    return convertExprToSMT(*funcCall->args[0]);
+}
+
         
         // Default: uninterpreted function
         std::ostringstream result;

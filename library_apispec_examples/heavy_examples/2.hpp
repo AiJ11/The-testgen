@@ -29,8 +29,8 @@ class heavyexample2
             vector<unique_ptr<Expr>> getId1params, getId2params, getId3Params;
             vector<unique_ptr<Expr>> args_in2params;
             vector<unique_ptr<Expr>> in3Params, in4Params;
-            unique_ptr<Expr> mapAcess1;
-            unique_ptr<Expr> mapAcess2, mapAccess3;
+            unique_ptr<Expr> mapAccess1;
+            unique_ptr<Expr> mapAccess2, mapAccess3;
             unique_ptr<Expr> getId1, getId2;
             unique_ptr<Expr> equals1, equals2;
             unique_ptr<Expr> in1, in2, in3, in4;
@@ -46,9 +46,9 @@ class heavyexample2
             // T[t]
             accessMap1params.push_back(std::make_unique<Var>("T"));
             accessMap1params.push_back(std::make_unique<Var>("token"));
-            mapAcess1 = std::make_unique<FuncCall>("mapAcess", move(accessMap1params));
+            mapAccess1 = std::make_unique<FuncCall>("mapAccess", move(accessMap1params));
             // T[t].id
-            getId1params.push_back(std::move(mapAcess1));
+            getId1params.push_back(std::move(mapAccess1));
             getId1 = std::make_unique<FuncCall>("getId", move(getId1params));
             // T[t].id in U
             args_in2params.push_back(move(getId1));
@@ -62,7 +62,7 @@ class heavyexample2
             // T[t]
             accessMap3params.push_back(std::make_unique<Var>("T"));
             accessMap3params.push_back(std::make_unique<Var>("token"));
-            mapAccess3 = std::make_unique<FuncCall>("mapAcess", move(accessMap3params));
+            mapAccess3 = std::make_unique<FuncCall>("mapAccess", move(accessMap3params));
             // T[t].role
             getRoleParams1.push_back(std::move(mapAccess3));
             getRoles = std::make_unique<FuncCall>("getRoles", move(getRoleParams1));

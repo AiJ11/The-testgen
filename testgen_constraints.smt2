@@ -5,13 +5,14 @@
 (declare-fun v2 () String)
 (declare-fun v3 () String)
 (declare-fun v4 () String)
-(declare-fun v5 () String)
-(declare-fun v6 () String)
-(declare-fun v7 () String)
 
 ; Map: S
 (declare-const Dom_S (Array String Bool))
 (declare-const Val_S (Array String String))
+
+; Map: S_old
+(declare-const Dom_S_old (Array String Bool))
+(declare-const Val_S_old (Array String String))
 
 ; Map: T
 (declare-const Dom_T (Array String Bool))
@@ -24,8 +25,9 @@
 (assert (> (str.len v2) 0))
 (assert (> (str.len v1) 0))
 
-(assert (! (and (select Dom_T v1) (select (mapAcess v3 v1)_domain v4)) :named c1))
-(assert (! (= v5 (set_union v6 v7)) :named c2))
+(assert (! (and (select Dom_T v1) (select Dom_U (select Val_T v1))) :named c1))
+(assert (! (and (= Dom_S_old Dom_S) (= Val_S_old Val_S)) :named c2))
+(assert (! (and (= Dom_S (store Dom_S_old v4 true)) (= Val_S Val_S_old)) :named c3))
 
 (check-sat)
 (get-model)

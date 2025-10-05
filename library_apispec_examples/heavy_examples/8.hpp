@@ -25,7 +25,7 @@ public:
         vector<unique_ptr<Expr>> accessMapParams;
         accessMapParams.push_back(std::make_unique<Var>("T"));
         accessMapParams.push_back(std::make_unique<Var>("token"));
-        auto mapAccess = std::make_unique<FuncCall>("mapAcess", move(accessMapParams));
+        auto mapAccess = std::make_unique<FuncCall>("mapAccess", move(accessMapParams));
         
         // u in U
         args_in2params.push_back(std::move(mapAccess));

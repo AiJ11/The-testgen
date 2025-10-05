@@ -85,15 +85,15 @@ void addthedashexpr(unique_ptr<Expr> &expr, set<string> &res){
     {
         return;
     }
-    cout<<res.size()<<endl;
+//     cout<<res.size()<<endl;
     if(res.size()>0)
     {
-        cout<<"The res right now has"<<endl;
+//         cout<<"The res right now has"<<endl;
         for(auto &x: res)
         {
-            cout<<x<<" ";
+//             cout<<x<<" ";
         }
-        cout<<endl;
+//         cout<<endl;
     }
 
     if (auto var = dynamic_cast<Var *>(expr.get()))
@@ -308,10 +308,10 @@ Program convert(const Spec *apispec, SymbolTable symtable, TypeMap typemap=TypeM
     TypeMap finaltm=TypeMap();
 
     vector<unique_ptr<Stmt>> program_stmts;
-     cout<<"we got here"<<apispec->blocks.size()<<endl;
+//      cout<<"we got here"<<apispec->blocks.size()<<endl;
     for(int i=0;i<apispec->blocks.size();i++){
         TypeMap *itm=new TypeMap();
-        cout<<"Index: "<<i<<endl;
+//         cout<<"Index: "<<i<<endl;
         SymbolTable *currtable = symtable.children[i];
         // cout<<"Implmentation of to_string function"<<endl;
         // // cout<<symtable.children[i]<<endl;
@@ -328,7 +328,7 @@ Program convert(const Spec *apispec, SymbolTable symtable, TypeMap typemap=TypeM
         
         auto post = std::move(response.expr);
         
-        cout<<"Came here1\n";
+//         cout<<"Came here1\n";
         // This section sees to that the input variables are made into appropriate statements 
         vector<unique_ptr<Expr>> InputVariables;
         for (int j = 0; j < call->call->args.size(); j++)
@@ -337,21 +337,21 @@ Program convert(const Spec *apispec, SymbolTable symtable, TypeMap typemap=TypeM
             to_string(i), currtable, finaltm, *(itm));
 
         }
-        cout << "Came here2\n";
+//         cout << "Came here2\n";
         // Making Statements for the input variables 
         // Making Statements for the input variables 
         for(int j=0;j<InputVariables.size();j++){
             program_stmts.push_back(makeStmt(std::move(InputVariables[j])));
         }
 
-        cout<<"We made it here"<<endl;
+//         cout<<"We made it here"<<endl;
         // we change the variables names here appropriately for e.g. adding uid --> uid + (i), but not changing
         // the global variables
         auto pre1=convert1(pre,currtable,to_string(i));
         auto callexpr = std::make_unique<FuncCall>(call->call->name, std::move(call->call->args));
         auto call1=convert1(reinterpret_cast<unique_ptr<Expr>&>(callexpr),currtable,to_string(i));
         auto post1=convert1(post,currtable,to_string(i));
-        cout << "before this it works" << endl;
+//         cout << "before this it works" << endl;
 
         // we get those global variable names where we have to add the ' to them 
         // U' = U union {uid -> p}
@@ -363,7 +363,7 @@ Program convert(const Spec *apispec, SymbolTable symtable, TypeMap typemap=TypeM
         PrintVisitor p;
         post1->accept(p);
         addthedashexpr(post1, res);
-        cout<<"So the dash works.."<<endl;
+//         cout<<"So the dash works.."<<endl;
         
         
         vector<unique_ptr<Expr>> v1;v1.push_back(std::move(pre1));
@@ -375,8 +375,8 @@ Program convert(const Spec *apispec, SymbolTable symtable, TypeMap typemap=TypeM
         // Making statemnents for the variables with a dash 
         for (auto &s : res)
         {
-            cout << "Variables with dash" << s << endl;
-            cout << "Variables with dash" << s << endl;
+//             cout << "Variables with dash" << s << endl;
+//             cout << "Variables with dash" << s << endl;
             auto g = makeStmt(make_unique<Var>(s + "_old"));
             vector<unique_ptr<Expr>> v;
             v.push_back(make_unique<Var>(s + "_old"));
@@ -385,7 +385,7 @@ Program convert(const Spec *apispec, SymbolTable symtable, TypeMap typemap=TypeM
             unique_ptr<Stmt> funCall = make_unique<FuncCallStmt>(move(curr));
             program_stmts.push_back(move(funCall));
         }
-        cout<<"So we could make the stmts"<<endl;
+//         cout<<"So we could make the stmts"<<endl;
 
 
         
@@ -408,7 +408,7 @@ Program convert(const Spec *apispec, SymbolTable symtable, TypeMap typemap=TypeM
         unique_ptr<FuncCall> p3=make_unique<FuncCall>("assert", std::move(v2));
         unique_ptr<FuncCallStmt> c3=make_unique<FuncCallStmt>(move(p3));
         program_stmts.push_back(std::move(c3));
-        cout<<"The program statement sizes"<<program_stmts.size()<<"\n";
+//         cout<<"The program statement sizes"<<program_stmts.size()<<"\n";
     }
 
     return Program(std::move(program_stmts));

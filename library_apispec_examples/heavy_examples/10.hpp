@@ -18,7 +18,7 @@ public:
         // Checking (t -> u in T)
         mapAccessParams.push_back(std::make_unique<Var>("T"));
         mapAccessParams.push_back(std::make_unique<Var>("token"));
-        mapAccess = std::make_unique<FuncCall>("mapAcess", move(mapAccessParams));
+        mapAccess = std::make_unique<FuncCall>("mapAccess", move(mapAccessParams));
         
         inParams1.push_back(std::move(mapAccess));
         inParams1.push_back(std::make_unique<Var>("U"));

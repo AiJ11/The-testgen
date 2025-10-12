@@ -20,6 +20,14 @@
 // #include "heavy_examples/8.hpp"
 // #include "heavy_examples/10.hpp"
 // #include "heavy_examples/11.hpp"
+#include "Pesu_foods/1.hpp"
+#include "Pesu_foods/2.hpp"
+#include "Pesu_foods/3.hpp"
+#include "tourism/1.hpp"
+#include "tourism/2.hpp"
+#include "tourism/3.hpp"
+#include "tourism/4.hpp"
+
 class Entry
 {
     public: 
@@ -79,7 +87,16 @@ class Entry
          //heavyexample1::example(apis, symtable);
         // heavyexample2::example(apis,symtable);
         // heavyexample3::example(apis,symtable);
-        heavyexample4::example(apis,symtable);
+        //heavyexample4::example(apis,symtable);
+        //Pesu_foods_example1::example(apis, symtable);
+        //Pesu_foods_example2::example(apis, symtable);
+        //tourism_example1::example(apis, symtable);
+        //tourism_example2::example(apis, symtable);
+        tourism_example3::example(apis, symtable);
+        //tourism_example4::example(apis, symtable);
+
+
+    
         // heavyexample6::example(apis,symtable);
         // heavyexample7::example(apis,symtable);
         // heavyexample10::example(apis,symtable);

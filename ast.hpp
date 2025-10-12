@@ -674,7 +674,7 @@ public:
 
     void accept(ExpoSEVisitor *visitor)  override
     {
-        cout<<"Hey funcCall\n"; 
+        //cout<<"Hey funcCall\n"; 
         visitor->visitFuncCall(*call);
     }
     std::unique_ptr<Stmt> clone() const override {

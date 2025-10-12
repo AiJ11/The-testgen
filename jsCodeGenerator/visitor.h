@@ -48,6 +48,8 @@ public:
     stack<string> strings;
     static string pop(stack<string> &);
     string retrieve();
+    std::string renderExprIsolated(Expr& e);
+    std::string renderExprPure(Expr& e); 
     // virtual string string_of_type();
     // virtual void visitHTTPResponseCode(HTTPResponseCode);
     void visitDecl(Decl &);
